@@ -1,31 +1,41 @@
 #include <stdio.h>
 
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
-// Siga os comentários para implementar cada parte do desafio.
-//Teste larissa
-
 int main() {
-    char estado1 = ' '; //letra que respresenta 1 o dos 8 estados
-    char codigo1[3] =""; //código da carta
-    char nomeCidade1[30] =""; //nome da cidade
-    int populacao1 = 0; //numero de habitantes
-    float area1 = 0; //area em quilometros quadrados
-    float pibb1 = 0; //pib
-    int nPontosTur1 = 0; //número de pontos turisticos
-    float densidade1 = 0; //densidade populacional
-    float pibPercap1 = 0; //pib per capita
+    //variaveis carta 1
+    char estado1            = ' '; //letra que respresenta 1 o dos 8 estados
+    char codigo1[3]         =""; //código da carta
+    char nomeCidade1[30]    =""; //nome da cidade
+    unsigned int populacao1 = 0; //numero de habitantes
+    float area1             = 0; //area em quilometros quadrados
+    float pibb1             = 0; //pib
+    short int nPontosTur1   = 0; //número de pontos turisticos
+    float densidade1        = 0; //densidade populacional
+    float pibPercap1        = 0; //pib per capita
+    float superpoder1       = 0; //superpoder (população, área, PIB, número de pontos turísticos, PIB per capita e o inverso da densidade populacional – quanto menor a densidade, maior o "poder").
 
-    char estado2 = ' '; //letra que respresenta 1 o dos 8 estados
-    char codigo2[3] =""; //código da carta
-    char nomeCidade2[30] =""; //nome da cidade
-    int populacao2 = 0; //numero de habitantes
-    float area2 = 0; //area em quilometros quadrados
-    float pibb2 = 0; //pib
-    int nPontosTur2 = 0; //número de pontos turisticos
-    float densidade2 = 0; //densidade populacional
-    float pibPercap2 = 0; //pib per capita
+    //variaveis carta 2
+    char estado2            = ' '; //letra que respresenta 1 o dos 8 estados
+    char codigo2[3]         =""; //código da carta
+    char nomeCidade2[30]    =""; //nome da cidade
+    unsigned int populacao2 = 0; //numero de habitantes
+    float area2             = 0; //area em quilometros quadrados
+    float pibb2             = 0; //pib
+    short int nPontosTur2   = 0; //número de pontos turisticos
+    float densidade2        = 0; //densidade populacional
+    float pibPercap2        = 0; //pib per capita
+    float superpoder2       = 0; //superpoder (população, área, PIB, número de pontos turísticos, PIB per capita e o inverso da densidade populacional – quanto menor a densidade, maior o "poder").
+
+    //auxiliar de nome
+    char nomeCarta[2][30]={"Carta 2","Carta 1"};
+
+    //inicia variaveis de comparacao
+    short int popComp       = 0;
+    short int areaComp      = 0;
+    short int pibComp       = 0;
+    short int turComp       = 0;
+    short int denComp       = 0;
+    short int pibCapComp    = 0;
+    short int superComp     = 0;
 
     //dados da primeira carta
     printf("A primeira carta preencha: ");
@@ -45,7 +55,7 @@ int main() {
     scanf("%d",&nPontosTur1);
 
     //dados da segunda carta
-    printf("\nA primeira carta preencha: \n");
+    printf("\nA segunda carta preencha: \n");
     printf("\nEstado: \n");
     scanf("%s",&estado2);
     printf("\nCódigo da carta: \n");
@@ -62,12 +72,25 @@ int main() {
     scanf("%d",&nPontosTur2);
 
     //calculo de PIB
-    pibPercap1 = (float)populacao1/area1;
-    pibPercap2 = (float)populacao2/area2;
-
+    pibPercap1  = (float)populacao1/area1;
+    pibPercap2  = (float)populacao2/area2;
+   
     //calculo da densidade populacional
-    densidade1 = (float)pibb1/populacao1;
-    densidade2 = (float)pibb2/populacao2;
+    densidade1  = (float)pibb1/populacao1;
+    densidade2  = (float)pibb2/populacao2;
+    
+    //calculo super poder
+    superpoder1 = (float)populacao1 + (float)area1 + (float)pibb1 + (float)nPontosTur1 + (float)pibPercap1 + (float)1/densidade1;
+    superpoder2 = (float)populacao2 + (float)area2 + (float)pibb2 + (float)nPontosTur2 + (float)pibPercap2 + (float)1/densidade2;
+
+    //comparações
+    popComp    = populacao1 > populacao2;
+    areaComp   = area1 > area2;
+    pibComp    = pibb1 > pibb2;
+    turComp    = nPontosTur1 > nPontosTur2;
+    denComp    = densidade1 < densidade2;
+    pibCapComp = pibPercap1 > pibPercap2;
+    superComp  = superpoder1 > superpoder2;
 
     printf("\nCarta 1: clear");
     printf("\nEstado: %c",estado1);
@@ -92,16 +115,15 @@ int main() {
     printf("\nPIB per Capita: %.2f reais",pibPercap2);
 
     printf("\n\n");
-    // Sugestão: Defina variáveis separadas para cada atributo da cidade.
-    // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
     
-    // Cadastro das Cartas:
-    // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
-    // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
-    
-    // Exibição dos Dados das Cartas:
-    // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
-    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
-
+    printf("\n\nComparação de Cartas: ");
+    printf("\nPopulação: %s venceu (%d)",nomeCarta[denComp],denComp);
+    printf("\nÁrea: %s venceu (%d)",nomeCarta[areaComp],areaComp);
+    printf("\nPIB: %s venceu (%d)",nomeCarta[pibComp],pibComp);
+    printf("\nPontos Turísticos: %s venceu (%d)",nomeCarta[turComp],turComp);
+    printf("\nDensidade Populacional: %s venceu (%d)",nomeCarta[denComp],denComp);
+    printf("\nPIB per Capita: %s venceu (%d)",nomeCarta[pibCapComp],pibCapComp);
+    printf("\nSuper Poder: %s venceu (%d)",nomeCarta[superComp],superComp);
+    printf("\n\n");
     return 0;
 }
