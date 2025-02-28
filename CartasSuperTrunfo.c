@@ -37,7 +37,7 @@ int main() {
     short int pibCapComp    = 0;
     short int superComp     = 0;
 
-    //dados da primeira carta
+    //inserção de dados da primeira carta
     printf("A primeira carta preencha: ");
     printf("\nEstado: \n");
     scanf("%s",&estado1);
@@ -54,7 +54,7 @@ int main() {
     printf("\nNúmero de Pontos Turísticos\n");
     scanf("%d",&nPontosTur1);
 
-    //dados da segunda carta
+    //inserção de dados da segunda carta
     printf("\nA segunda carta preencha: \n");
     printf("\nEstado: \n");
     scanf("%s",&estado2);
@@ -92,7 +92,11 @@ int main() {
     pibCapComp = pibPercap1 > pibPercap2;
     superComp  = superpoder1 > superpoder2;
 
-    printf("\nCarta 1: clear");
+
+    //mostrando mensagens
+
+    //dados da carta 1
+    printf("\nCarta 1: ");
     printf("\nEstado: %c",estado1);
     printf("\nCódigo: %s",codigo1);
     printf("\nNome da cidade: %s",nomeCidade1);
@@ -103,6 +107,7 @@ int main() {
     printf("\nDensidade populacional: %.2f hab/km2",densidade1);
     printf("\nPIB per Capita: %.2f reais",pibPercap1);
     
+    //dados da carta 2
     printf("\n\nCarta 2:");
     printf("\nEstado: %c",estado2);
     printf("\nCódigo: %s",codigo2);
@@ -116,6 +121,7 @@ int main() {
 
     printf("\n\n");
     
+    //resultados das comparações
     printf("\n\nComparação de Cartas: ");
     printf("\nPopulação: %s venceu (%d)",nomeCarta[denComp],denComp);
     printf("\nÁrea: %s venceu (%d)",nomeCarta[areaComp],areaComp);
@@ -125,5 +131,6 @@ int main() {
     printf("\nPIB per Capita: %s venceu (%d)",nomeCarta[pibCapComp],pibCapComp);
     printf("\nSuper Poder: %s venceu (%d)",nomeCarta[superComp],superComp);
     printf("\n\n");
+
     return 0;
 }
